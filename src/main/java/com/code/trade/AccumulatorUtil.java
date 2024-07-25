@@ -81,5 +81,5 @@ public class AccumulatorUtil {
         System.out.println("Result: " + acc.add("1,1001"));// passed
     }
 
-    public static void main(String[] args) {  test();  }
+    //public static void main(String[] args) {  test();  }
 }

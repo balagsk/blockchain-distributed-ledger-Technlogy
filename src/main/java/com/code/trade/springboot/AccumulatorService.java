@@ -1,5 +1,6 @@
 package com.code.trade.springboot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,13 +13,16 @@ import java.util.List;
 @Service
 public class AccumulatorService {
 
-    public static int add(String numbers) throws IllegalArgumentException {
+    @Autowired
+    AccumulatorConfig accumulatorConfig;
+
+    public int add(String numbers) throws IllegalArgumentException {
         int resultSum = 0;
         if (numbers.isEmpty()) {
             return 0;
         }
         // Default delimiter are comma and newline
-        String delimiter = ",|\n";
+        String delimiter = accumulatorConfig.getDefaultDelimiters(); // ",|\n";
 
         // Support for multiple delimiters
         if (numbers.startsWith("//")) {
@@ -44,7 +48,7 @@ public class AccumulatorService {
         return resultSum;
     }
 
-    public static int calculation(String[] tokens) {
+    public int calculation(String[] tokens) {
         List<Integer> negatives = new ArrayList<>();
         int sum = 0;
 
@@ -69,7 +73,7 @@ public class AccumulatorService {
     }
 
     //Renamed to test method, due to Banking email restrictions
-    public static void test() {
+    public void test() {
         AccumulatorService acc = new AccumulatorService();
 
         // Test cases
